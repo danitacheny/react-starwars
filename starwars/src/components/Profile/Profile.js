@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import "./Profile.css";
 
 class Profile extends React.Component {
@@ -29,6 +30,7 @@ class Profile extends React.Component {
         <div>Skin: {this.state.characterInfo.skin_color}</div>
         <div>Hair: {this.state.characterInfo.hair_color}</div>
         <div>Eye Color: {this.state.characterInfo.eye_color}</div>
+        <Link to="/">Back to List</Link>
       </li>
     );
   }
