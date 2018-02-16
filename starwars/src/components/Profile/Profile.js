@@ -1,19 +1,37 @@
-import React from 'react';
-import './Profile.css';
+import React from "react";
+import axios from 'axios';
+import "./Profile.css";
 
-const Profile = (props) => {
-  return (
-    <li className='profile'>
-      <div>Name: {props.profile.name}</div>
-      <div>Birth Year: {props.profile.birth_year}</div>
-      <div>Gender: {props.profile.gender}</div>
-      <div>Height: {props.profile.height}</div>
-      <div>Mass: {props.profile.mass}</div>
-      <div>Skin: {props.profile.skin_color}</div>
-      <div>Hair: {props.profile.hair_color}</div>
-      <div>Eye Color: {props.profile.eye_color}</div>
-    </li>
-  )
+class Profile extends React.Component {
+  state = {
+    characterInfo: [],
+  }
+
+  componentDidMount() {
+    const location = this.props.match.params.id;
+    axios
+    .get(`https://swapi.co/api/people/${location}/`)
+    .then(response => {
+      this.setState({ characterInfo: response.data })
+    })
+    .catch(error => console.log('there was an error:', error))
+      
+  }
+  
+  render() {
+    return (
+      <li className="profile">
+        <div>Name: {this.state.characterInfo.name}</div>
+        <div>Birth Year: {this.state.characterInfo.birth_year}</div>
+        <div>Gender: {this.state.characterInfo.gender}</div>
+        <div>Height: {this.state.characterInfo.height}</div>
+        <div>Mass: {this.state.characterInfo.mass}</div>
+        <div>Skin: {this.state.characterInfo.skin_color}</div>
+        <div>Hair: {this.state.characterInfo.hair_color}</div>
+        <div>Eye Color: {this.state.characterInfo.eye_color}</div>
+      </li>
+    );
+  }
 }
 
 export default Profile;

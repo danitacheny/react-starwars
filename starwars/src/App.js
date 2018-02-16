@@ -13,6 +13,7 @@ class App extends React.Component {
             <h1 className="Header">React Wars</h1>
             <div className="main_content">
               <Route exact path="/" component={ProfilesList} />
+              <Route path="/people/:id" component={Profile} />
             </div>
           </div>
         </div>
